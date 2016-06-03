@@ -14,7 +14,23 @@
     		});
 
             socket.on('cell response', function(msg) {
-        		$('#'+msg.data).append('<span style="font-size: 40px;">X</span>');
+        		$('#'+msg.data).append('X');
+        		$('#'+msg.data).attr("data-status", "false");
+    		});
+
+    		socket.on('login response', function(msg) {
+        		$('#login-place').append("<p>msg.data</p>");
+    		});
+
+    		$('.cell').click(function(event) {
+    		    var cell_id = $(this).attr('id');
+    		    if ($(this).attr('data-status') === "true"){
+        		    socket.emit('cell event', {data: cell_id});
+
+        		}else{
+        		    alert('Field is blocked!');
+        		}
+        		return false;
     		});
 
     		$('.cell').click(function(event) {
@@ -22,23 +38,20 @@
         		socket.emit('my event', {data: cell_id});
         		return false;
     		});
-
-    		$('.cell').click(function(event) {
-    		    var cell_id = $(this).attr('id');
-        		socket.emit('cell event', {data: cell_id});
-        		return false;
-    		});
-    		$('form#broadcast').submit(function(event) {
-        		socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
+    		$('.login').submit(function(event) {
+        		socket.emit('my broadcast event', {data: $("#name").val()});
         		return false;
     		});
 		});
     </script>
 </head>
 <body>
-<h1>Game Board</h1>
-
-
+    <div id="login-place">
+        <form class="login">
+            <input id="name" type="text" placeholder="name" value="name">
+            <input id="button" type="submit" value="Set Your Game Name">
+        </form>
+    </div>
     <div class="container">
         <div class="game">
             <table class="game-table">
@@ -49,19 +62,19 @@
                 </thead>
                 <tbody id="game-board" class="table-body">
                     <tr>
-                        <td id='1' class="cell"></td>
-                        <td id='2' class="cell"></td>
-                        <td id='3' class="cell"></td>
+                        <td id='1' class="cell" data-status="true"></td>
+                        <td id='2' class="cell" data-status="true"></td>
+                        <td id='3' class="cell" data-status="true"></td>
                     </tr>
                     <tr>
-                        <td id='4' class="cell"></td>
-                        <td id='5' class="cell"></td>
-                        <td id='6' class="cell"></td>
+                        <td id='4' class="cell" data-status="true"></td>
+                        <td id='5' class="cell" data-status="true"></td>
+                        <td id='6' class="cell" data-status="true"></td>
                     </tr>
                     <tr>
-                        <td id='7' class="cell"></td>
-                        <td id='8' class="cell"></td>
-                        <td id='9' class="cell"></td>
+                        <td id='7' class="cell" data-status="true"></td>
+                        <td id='8' class="cell" data-status="true"></td>
+                        <td id='9' class="cell" data-status="true"></td>
                     </tr>
                 </tbody>
             </table>
