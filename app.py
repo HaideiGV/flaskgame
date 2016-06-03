@@ -13,6 +13,10 @@ def index():
 def test_message(message):
     emit('my response', {'data': message['data']})
 
+@socketio.on('cell event', namespace='/test')
+def test_message(message):
+    emit('cell response', {'data': message['data']})
+
 @socketio.on('my broadcast event', namespace='/test')
 def test_message(message):
     emit('my response', {'data': message['data']}, broadcast=True)
