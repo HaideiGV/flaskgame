@@ -10,16 +10,16 @@
     	$(document).ready(function(){
     		var socket = io.connect('http://127.0.0.1:5000/test');
     		socket.on('my response', function(msg) {
-        		$('#log').append('<p>Received: ' + msg.data + '</p>');
+        		$('#log').append('<p>Received: from '+ msg.cell_name + ' to -> '+ msg.data + '</p>');
     		});
 
             socket.on('cell response', function(msg) {
-        		$('#'+msg.data).append('X');
+        		$('#'+msg.data).append(msg.cell_name);
         		$('#'+msg.data).attr("data-status", "false");
     		});
 
     		socket.on('login response', function(msg) {
-        		$('#login-place').append("<p>msg.data</p>");
+        		$('#login-place').append("<p>"+msg.data+"</p>");
     		});
 
     		$('.cell').click(function(event) {
@@ -42,16 +42,20 @@
         		socket.emit('my broadcast event', {data: $("#name").val()});
         		return false;
     		});
+
+    		$('#join').submit(function(event) {
+        		socket.emit('join', {room: $('#join_room').val()});
+        		return false;
+    		});
 		});
     </script>
 </head>
 <body>
-    <div id="login-place">
-        <form class="login">
-            <input id="name" type="text" placeholder="name" value="name">
-            <input id="button" type="submit" value="Set Your Game Name">
-        </form>
-    </div>
+    <form id="join" method="POST" action='#'>
+        <input type="text" name="join_room" id="join_room" placeholder="Room Name">
+        <input type="submit" value="Join Room">
+    </form>
+
     <div class="container">
         <div class="game">
             <table class="game-table">
@@ -79,7 +83,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div id='log'>
 
-        <dir id='log'></dir>
+    </div>
 </body>
 </html>

@@ -73,3 +73,13 @@ body {
     font-size: 24px;
     text-align: center;
 }
+
+#log{
+    width: 45%;
+    float: left;
+}
+
+.container{
+    float: left;
+    width: 45%;
+}
