@@ -1,17 +1,13 @@
-from gevent import monkey
-monkey.patch_all()
-
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send
-from flask.ext.login import LoginManager
 from flask import logging
+from extension import login_manager, LoginManager, CsrfProtect
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-login_db = {
-}
 
 @app.route('/game')
 def index():
@@ -20,15 +16,21 @@ def index():
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    session['game'] = {}
+    session['counter'] = 0
     error = None
     if request.method == 'POST':
         if request.form['username'] not in ['admin1', 'admin2'] or request.form['password'] not in ['admin1', 'admin2']:
             error = 'Invalid Credentials. Please try again.'
         else:
             session['username'] = request.form['username']
+            if not (session['game'] != {}):
+                session['game']['user1'] = {0: request.form['username']}
+            else:
+                session['game']['user2'] = {1: request.form['username']}
+            print(session['game'])
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
-
 
 
 @socketio.on('join')
