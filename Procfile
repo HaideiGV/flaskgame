@@ -1,2 +1,2 @@
 web: pip install --upgrade pip
-web: python app.py --host=haidei-game.herokuapp.com
+web: gunicorn -w 4 -b "0.0.0.0:$PORT" app:app
