@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send
 from flask import logging
 from extension import login_manager, LoginManager, CsrfProtect
-import gevent
-gevent.monkey_patch()
+from gevent import monkey
+monkey.patch_all()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
