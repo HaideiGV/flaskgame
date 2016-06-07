@@ -9,6 +9,11 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		var socket = io.connect('http://haidei-game.herokuapp.com/test');
+
+            socket.on('my connecting', function(msg) {
+        		$('#connecting').append('<p>Received: from '+ msg.data + '</p>');
+    		});
+
     		socket.on('my response', function(msg) {
         		$('#log').append('<p>Received: from '+ msg.cell_name + ' to -> '+ msg.data + '</p>');
     		});
@@ -84,6 +89,7 @@
             </table>
         </div>
     </div>
+    <div id="connecting"></div>
     <div id='log'>
 
     </div>

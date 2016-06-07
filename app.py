@@ -66,7 +66,7 @@ def test_message(message):
 @socketio.on('connect', namespace='/test')
 def test_connect():
     cell_name = session['username']
-    emit('my response', {'data': 'Connected', 'cell_name': cell_name}, broadcast=True)
+    emit('my connecting', {'data': 'Connected', 'cell_name': cell_name}, broadcast=True)
 
 @socketio.on('disconnect', namespace='/test')
 def test_disconnect():
