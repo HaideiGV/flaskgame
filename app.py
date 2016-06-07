@@ -24,7 +24,7 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             session['username'] = request.form['username']
-            if not (session['game'] != {}):
+            if not session['game']:
                 session['game']['user1'] = {0: request.form['username']}
             else:
                 session['game']['user2'] = {1: request.form['username']}
