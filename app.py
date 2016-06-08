@@ -6,6 +6,7 @@ monkey.patch_all()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
+broadcasting = False
 
 # show game board
 @app.route('/game')
@@ -33,9 +34,11 @@ def on_join(data):
     room = data['room']
     print(room)
     if session['receive_count'] <= 2:
+        global broadcasting
+        broadcasting = True
         join_room(room)
         emit('my response', {
-            'data': name+' connected. In rooms: ' + ', '.join(rooms()),
+            'data': name+' connected. In rooms: ' + room,
         })
     else:
         emit('my response', {'data': name+' not connected. In room 2 gamers '})
@@ -45,30 +48,33 @@ def on_join(data):
 @socketio.on('leave', namespace='/test')
 def on_leave(data):
     name = session['username']
+    session['receive_count'] = session.get('receive_count', 0) - 1
     room = data['room']
+    global broadcasting
+    broadcasting = False
     leave_room(room)
-    send(name + ' has left the room.', room=room)
+    emit('my response', {'data': name + ' has left the room.' + room}, broadcast=broadcasting)
 
 
 # function for display each events on the right chat
 @socketio.on('my event', namespace='/test')
 def test_message(message):
     name = session['username']
-    emit('my response', {'data': message['data'], 'name': name}, broadcast=True)
+    emit('my response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
 def test_message(message):
     name = session['username']
-    emit('cell response', {'data': message['data'], 'name': name}, broadcast=True)
+    emit('cell response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
 #connect function
 @socketio.on('connect', namespace='/test')
 def test_connect():
     name = session['username']
-    emit('my connecting', {'data': 'Connected', 'name': name}, broadcast=True)
+    emit('my connecting', {'data': 'Connected', 'name': name}, broadcast=broadcasting)
 
 
 # disconnect function
