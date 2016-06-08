@@ -16,11 +16,11 @@
     		});
 
     		socket.on('my response', function(msg) {
-        		$('#log').append('<p>Received: from '+ msg.cell_name + ' to -> '+ msg.data + '</p>');
+        		$('#log').append('<p>Received: from '+ msg.name + ' to -> '+ msg.data + '</p>');
     		});
 
             socket.on('cell response', function(msg) {
-        		$('#'+msg.data).append(msg.cell_name);
+        		$('#'+msg.data).append(msg.name);
         		$('#'+msg.data).attr("data-status", "false");
     		});
 
@@ -43,7 +43,9 @@
     		});
 
     		$('form#join').submit(function(event) {
-                socket.emit('join', {room: $('#join_room').val()});
+                var room = $('#join_room').val();
+                alert(room);
+                socket.emit('join', {room: room});
                 return false;
             });
 		});

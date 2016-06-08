@@ -26,39 +26,42 @@ def login():
 
 
 # use the room if the room have less than 1 users
-@socketio.on('join')
+@socketio.on('join', namespace='/test')
 def on_join(data):
-    username = session['username']
+    name = session['username']
     session['receive_count'] = session.get('receive_count', 0) + 1
     room = data['room']
+    print(room)
     if session['receive_count'] <= 2:
         join_room(room)
-        emit('my response', {'data': username+' connected. In rooms: ' + ', '.join(rooms()), 'count': session['receive_count']})
+        emit('my response', {
+            'data': name+' connected. In rooms: ' + ', '.join(rooms()),
+        })
     else:
-        emit('my response', {'data': username+' not connected. In room 2 gamers '})
+        emit('my response', {'data': name+' not connected. In room 2 gamers '})
 
 
 # out from the room
-@socketio.on('leave')
+@socketio.on('leave', namespace='/test')
 def on_leave(data):
-    username = session['username']
+    name = session['username']
     room = data['room']
     leave_room(room)
-    send(username + ' has left the room.', room=room)
+    send(name + ' has left the room.', room=room)
 
 
 # function for display each events on the right chat
 @socketio.on('my event', namespace='/test')
 def test_message(message):
-    cell_name = session['username']
-    emit('my response', {'data': message['data'], 'cell_name': cell_name}, broadcast=True)
+    name = session['username']
+    emit('my response', {'data': message['data'], 'name': name}, broadcast=True)
 
 
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
 def test_message(message):
-    cell_name = session['username']
-    emit('cell response', {'data': message['data'], 'cell_name': cell_name}, broadcast=True)
+    name = session['username']
+    emit('cell response', {'data': message['data'], 'name': name}, broadcast=True)
 
 
 #connect function
