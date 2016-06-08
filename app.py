@@ -34,12 +34,12 @@ def on_join(data):
     room = data['room']
     print(room)
     if session['receive_count'] <= 2:
+        join_room(room)
         global broadcasting
         broadcasting = True
-        join_room(room)
         emit('my response', {
             'data': name+' connected. In rooms: ' + room,
-        })
+        }, broadcast=broadcasting)
     else:
         emit('my response', {'data': name+' not connected. In room 2 gamers '})
 
@@ -50,9 +50,9 @@ def on_leave(data):
     name = session['username']
     session['receive_count'] = session.get('receive_count', 0) - 1
     room = data['room']
+    leave_room(room)
     global broadcasting
     broadcasting = False
-    leave_room(room)
     emit('my response', {'data': name + ' has left the room.' + room}, broadcast=broadcasting)
 
 
