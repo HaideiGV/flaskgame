@@ -44,7 +44,6 @@
 
     		$('form#join').submit(function(event) {
                 var room = $('#join_room').val();
-                alert(room);
                 socket.emit('join', {room: room});
                 return false;
             });
