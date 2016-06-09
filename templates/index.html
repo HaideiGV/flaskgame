@@ -9,6 +9,7 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		var socket = io.connect('http://haidei-game.herokuapp.com/test');
+    	//	var socket = io.connect('http://127.0.0.1:5000/test');
 
             socket.on('my connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
