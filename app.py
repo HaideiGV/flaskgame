@@ -10,7 +10,7 @@ broadcasting = False
 
 wins_combo = [
 	[1,2,3],[4,5,6],[7,8,9],
-	[1,4,7],[2,5,8],[3.6.9],
+	[1,4,7],[2,5,8],[3,6,9],
 	[1,5,9],[3,5,7]
 
 ]
@@ -91,4 +91,4 @@ def test_disconnect():
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
+    socketio.run(app, debug=True, host='127.0.0.1', port=5000)
