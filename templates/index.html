@@ -15,6 +15,10 @@
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
     		});
 
+            socket.on('wins response', function(msg) {
+                $('#connecting').append('<p>'+ msg.win+' Wins!</p>');
+            });
+
     		socket.on('my response', function(msg) {
         		$('#log').append('<p>Received: from '+ msg.name + ' to -> '+ msg.data + '</p>');
     		});

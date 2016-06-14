@@ -31,7 +31,6 @@ def login():
         else:
             session['username'] = request.form['username']
             session['steps'] = []
-            print(session['steps'])
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
 
@@ -75,10 +74,18 @@ def test_message(message):
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
 def test_message(message):
-	existing_steps = session.get('steps',0)
     name = session['username']
-    session['steps'] = existing_steps.append(message['data']
-    print(session['steps'])
+    cell_id = int(message['data'])
+    existing_steps = session.get('steps', 0)
+    existing_steps.append(cell_id)
+    session['steps'] = existing_steps
+    sorted(existing_steps)
+    print(existing_steps)
+    for i in wins_combo:
+        if i in existing_steps:
+            print i
+            emit('wins response', {'data': message['data'], 'win': name}, broadcast=broadcasting)
+            break
     emit('cell response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
