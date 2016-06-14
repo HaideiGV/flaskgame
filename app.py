@@ -20,6 +20,7 @@ wins_combo = [
 def index():
     return render_template('index.html')
 
+
 # login func
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -29,6 +30,8 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             session['username'] = request.form['username']
+            session['steps'] = []
+            print(session['steps'])
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
 
@@ -39,7 +42,6 @@ def on_join(data):
     name = session['username']
     session['receive_count'] = session.get('receive_count', 0) + 1
     room = data['room']
-    print(room)
     if session['receive_count'] <= 2:
         join_room(room)
         global broadcasting
@@ -73,7 +75,10 @@ def test_message(message):
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
 def test_message(message):
+	existing_steps = session.get('steps',0)
     name = session['username']
+    session['steps'] = existing_steps.append(message['data']
+    print(session['steps'])
     emit('cell response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
