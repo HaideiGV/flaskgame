@@ -1,26 +1,22 @@
-/* http://getbootstrap.com */
-
 .starter-template {
   padding: 40px 15px;
   text-align: center;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
   padding-top: 50px;
 }
+
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
 }
@@ -29,14 +25,15 @@ body {
 .cell{
     width: 7em;
     height: 7em;
-    background-color: darkgray;
+    border-radius: 1em;
+    background-color: gray;
     text-align: center;
-    border: 2px solid whitesmoke;
+    border: 1px solid #f5f5f5;
 
 }
 
 .table-header{
-    background-color: bisque;
+    background-color: green;
     font-size: 24px;
     text-align: center;
     width: 9em;
@@ -75,11 +72,47 @@ body {
 }
 
 #log{
-    width: 45%;
+    width: 45em;
     float: left;
+    background-color: lightgray;
 }
 
 .container{
     float: left;
     width: 45%;
+}
+
+.login{
+  margin-left: 35%;
+  margin-top: 10%;
+  max-width: 300px;
+}
+
+.join{
+  max-width: 200px;
+}
+
+.leave{
+  max-width: 200px;
+}
+
+.btn{
+  margin-left: 1em;
+  width: 120px;
+}
+
+#join_room{
+  width: 200px;
+  float: left;
+}
+
+#leave_room{
+  width: 200px;
+  float: left;
+}
+
+#connecting{
+    width: 45em;
+    float: left;
+    background-color: green;
 }
