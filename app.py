@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
+from extension import get_all_combos
 monkey.patch_all()
 
 app = Flask(__name__)
@@ -12,7 +13,6 @@ wins_combo = [
 	[1,2,3],[4,5,6],[7,8,9],
 	[1,4,7],[2,5,8],[3,6,9],
 	[1,5,9],[3,5,7]
-
 ]
 
 # show game board
@@ -79,11 +79,8 @@ def test_message(message):
     existing_steps = session.get('steps', 0)
     existing_steps.append(cell_id)
     session['steps'] = existing_steps
-    sorted(existing_steps)
-    print(existing_steps)
     for i in wins_combo:
-        if i in existing_steps:
-            print i
+        if i in get_all_combos(existing_steps):
             emit('wins response', {'data': message['data'], 'win': name}, broadcast=broadcasting)
             break
     emit('cell response', {'data': message['data'], 'name': name}, broadcast=broadcasting)

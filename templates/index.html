@@ -16,6 +16,7 @@
     		});
 
             socket.on('wins response', function(msg) {
+                alert(msg.win+' Wins!');
                 $('#connecting').append('<p>'+ msg.win+' Wins!</p>');
             });
 
