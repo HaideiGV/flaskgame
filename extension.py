@@ -21,4 +21,3 @@ def get_all_combos(arr):
 				else:
 					result.append(sorted(temp))
 	return result
-
