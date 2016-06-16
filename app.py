@@ -1,11 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
+from flask_cors import cross_origin
 from extension import get_all_combos
 monkey.patch_all()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
+app.config['CORS_HEADERS'] = 'Content-Type'
 socketio = SocketIO(app)
 broadcasting = False
 
@@ -17,12 +19,14 @@ wins_combo = [
 
 # show game board
 @app.route('/game')
+@cross_origin(origin='*')
 def index():
     return render_template('index.html')
 
 
 # login func
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin(origin='*')
 def login():
     error = None
     if request.method == 'POST':
@@ -37,6 +41,7 @@ def login():
 
 # use the room if the room have less than 1 users
 @socketio.on('join', namespace='/test')
+@cross_origin(origin='*')
 def on_join(data):
     name = session['username']
     session['receive_count'] = session.get('receive_count', 0) + 1
@@ -54,6 +59,7 @@ def on_join(data):
 
 # out from the room
 @socketio.on('leave', namespace='/test')
+@cross_origin(origin='*')
 def on_leave(data):
     name = session['username']
     session['receive_count'] = session.get('receive_count', 0) - 1
@@ -66,6 +72,7 @@ def on_leave(data):
 
 # function for display each events on the right chat
 @socketio.on('my event', namespace='/test')
+@cross_origin(origin='*')
 def test_message(message):
     name = session['username']
     emit('my response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
@@ -73,6 +80,7 @@ def test_message(message):
 
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
+@cross_origin(origin='*')
 def test_message(message):
     name = session['username']
     cell_id = int(message['data'])
@@ -88,6 +96,7 @@ def test_message(message):
 
 #connect function
 @socketio.on('connect', namespace='/test')
+@cross_origin(origin='*')
 def test_connect():
     name = session['username']
     emit('my connecting', {'data': 'Connected', 'name': name}, broadcast=broadcasting)
@@ -95,6 +104,7 @@ def test_connect():
 
 # disconnect function
 @socketio.on('disconnect', namespace='/test')
+@cross_origin(origin='*')
 def test_disconnect():
     print('Client disconnected!')
 
