@@ -20,6 +20,9 @@ wins_combo = [
 def index():
     return render_template('index.html')
 
+@app.route('/game-with-comp')
+def index_comp():
+    return render_template('index-with-comp.html')
 
 # login func
 @app.route('/', methods=['GET', 'POST'])

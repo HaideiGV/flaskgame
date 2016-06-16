@@ -43,7 +43,7 @@ body {
 
 
 .game-table{
-    margin-left: 1em;
+    margin-left: 2em;
     margin-top: 2em;
     border: 4px solid #333;
 
@@ -88,26 +88,28 @@ body {
   max-width: 300px;
 }
 
-.join{
-  max-width: 200px;
+#join{
+  max-width: 350px;
+  margin-left: 3em;
 }
 
-.leave{
-  max-width: 200px;
+#leave{
+  max-width: 350px;
+  margin-left: 3em;
 }
 
 .btn{
   margin-left: 1em;
-  width: 120px;
+  width: 100px;
 }
 
 #join_room{
-  width: 200px;
+  width: 150px;
   float: left;
 }
 
 #leave_room{
-  width: 200px;
+  width: 150px;
   float: left;
 }
 
