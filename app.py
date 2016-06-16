@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
-#from flask_cors import cross_origin
 from extension import get_all_combos
 monkey.patch_all()
 
