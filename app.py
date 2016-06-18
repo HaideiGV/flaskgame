@@ -3,10 +3,30 @@ from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room
 from gevent import monkey
 from extension import get_all_combos
 import random
+from flask_oauth import OAuth
 monkey.patch_all()
 
+
+SECRET_KEY = 'development key'
+FACEBOOK_APP_ID = '301138273559491'
+FACEBOOK_APP_SECRET = '568f4f72499b113c7fc7f27c546132ba'
+
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
+app.config['SECRET_KEY'] = SECRET_KEY
+oauth = OAuth()
+
+facebook = oauth.remote_app('facebook',
+    base_url='https://graph.facebook.com/',
+    request_token_url=None,
+    access_token_url='/oauth/access_token',
+    authorize_url='https://www.facebook.com/dialog/oauth',
+    consumer_key=FACEBOOK_APP_ID,
+    consumer_secret=FACEBOOK_APP_SECRET,
+    request_token_params={'scope': 'email'}
+)
+
+
 socketio = SocketIO(app)
 broadcasting = False
 
@@ -15,6 +35,42 @@ wins_combo = [
 	[1,4,7],[2,5,8],[3,6,9],
 	[1,5,9],[3,5,7]
 ]
+
+
+
+
+#___________________________________________________
+@app.route('/')
+def login():
+    return facebook.authorize(callback=url_for('facebook_authorized',
+        next=request.args.get('next') or request.referrer or None,
+        _external=True))
+
+
+@app.route('/login/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
+
+
+@facebook.tokengetter
+def get_facebook_oauth_token():
+    return session.get('oauth_token')
+
+#___________________________________________________
+
+
+
+
+
 
 # show game board
 @app.route('/game')
@@ -26,8 +82,8 @@ def index_comp():
     return render_template('index-with-comp.html')
 
 # login func
-@app.route('/', methods=['GET', 'POST'])
-def login():
+@app.route('/route', methods=['GET', 'POST'])
+def login1():
     error = None
     if request.method == 'POST':
         human_trigger = request.form.get('human')
