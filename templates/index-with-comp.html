@@ -10,28 +10,36 @@
     	$(document).ready(function(){
     		var socket = io.connect('ws://localhost:50001/test');
 
-            socket.on('my connecting', function(msg) {
+            socket.on('bot connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
     		});
 
-            socket.on('wins response', function(msg) {
+
+            socket.on('bot cell response', function(msg) {
+                $('#'+msg.data).append(msg.name);
+                $('#'+msg.data).attr("data-status", "false");
+                setTimeout(1000);
+                $('#'+msg.bot_step).append('Bot');
+                $('#'+msg.bot_step).attr("data-status", "false");
+            });
+
+
+            socket.on('bot wins response', function(msg) {
+                $('.cell').attr("data-status", "false");
                 $('#connecting').append('<p>'+ msg.win+' Wins!</p>');
                 alert(msg.win+' Wins!');
             });
 
-    		socket.on('my response', function(msg) {
+    		socket.on('bot response', function(msg) {
         		$('#log').append('<p>Received: from '+ msg.name + ' to -> '+ msg.data + '</p>');
     		});
 
-            socket.on('cell response', function(msg) {
-        		$('#'+msg.data).append(msg.name);
-        		$('#'+msg.data).attr("data-status", "false");
-    		});
+
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
     		    if ($(this).attr('data-status') === "true"){
-        		    socket.emit('cell event', {data: cell_id});
+        		    socket.emit('bot cell event', {data: cell_id});
         		}else{
         		    alert('Field is blocked!');
         		}
@@ -40,34 +48,32 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-        		socket.emit('my event', {data: cell_id});
+        		socket.emit('bot event', {data: cell_id});
         		return false;
     		});
 
-    		$('form#join').submit(function(event) {
-                var room = $('#join_room').val();
-                socket.emit('join', {room: room});
-                return false;
-            });
-
-            $('form#leave').submit(function(event) {
-                socket.emit('leave', {room: $('#leave_room').val()});
-                return false;
-            });
 		});
     </script>
 </head>
 <body>
-    <form id="join" method="POST" action='#'>
-        <input class="form-control" type="text" name="join_room" id="join_room" placeholder="Room Name">
-        <input class="btn btn-success" type="submit" value="Join Room">
-    </form>
-    <form id="leave" method="POST" action='#'>
-        <input class="form-control" type="text" name="leave_room" id="leave_room" placeholder="Room Name">
-        <input class="btn btn-danger" type="submit" value="Leave Room">
-    </form>
 
-    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="header-btn">
+                <a class="navbar-brand" href="/">Log Out</a>
+            </li>
+            <li class="header-btn">
+                <a class="navbar-brand" href="/game-with-comp">New Game</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div class="game-container">
         <div class="game">
             <table class="game-table">
                 <thead class="table-header">

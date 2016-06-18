@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
 from extension import get_all_combos
+import random
 monkey.patch_all()
 
 app = Flask(__name__)
@@ -29,12 +30,23 @@ def index_comp():
 def login():
     error = None
     if request.method == 'POST':
+        human_trigger = request.form.get('human')
+        print(human_trigger)
+        bot_trigger = request.form.get('bot')
+        print(bot_trigger)
         if request.form['username'] not in ['admin1', 'admin2'] or request.form['password'] not in ['admin1', 'admin2']:
             error = 'Invalid Credentials. Please try again.'
         else:
-            session['username'] = request.form['username']
-            session['steps'] = []
-            return redirect(url_for('index'))
+            if human_trigger:
+                session['username'] = request.form['username']
+                session['steps'] = []
+                return redirect(url_for('index'))
+            elif bot_trigger:
+                session['username'] = request.form['username']
+                session['all_choices'] = [1,2,3,4,5,6,7,8,9]
+                session['bot_steps'] = []
+                session['steps'] = []
+                return redirect(url_for('index_comp'))
     return render_template('login.html', error=error)
 
 
@@ -74,6 +86,14 @@ def test_message(message):
     emit('my response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
+
+# function for display each events for game with bot on the right chat
+@socketio.on('bot event', namespace='/test')
+def test_message(message):
+    name = session['username']
+    emit('bot response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
+
+
 # function which send username into cells, which was clicked
 @socketio.on('cell event', namespace='/test')
 def test_message(message):
@@ -89,6 +109,41 @@ def test_message(message):
     emit('cell response', {'data': message['data'], 'name': name}, broadcast=broadcasting)
 
 
+
+
+#game with bot
+@socketio.on('bot cell event', namespace='/test')
+def test_message(message):
+    name = session['username']
+    cell_id = int(message['data'])
+    existing_steps = session.get('steps', 0)
+    bot_existing_steps = session.get('bot_steps', 0)
+    existing_steps.append(cell_id)
+    session['steps'] = existing_steps
+    for i in wins_combo:
+        if i in get_all_combos(existing_steps):
+            emit('bot wins response', {'data': message['data'], 'win': name}, broadcast=broadcasting)
+            test_disconnect('Game Over')
+            break
+    my_left_choices = list(set(session['all_choices']).difference([cell_id]))
+    if my_left_choices:
+        next_bot_step = random.choice(my_left_choices)
+        bot_left_choices = list(set(my_left_choices).difference([next_bot_step]))
+        session['all_choices'] = bot_left_choices
+        bot_existing_steps.append(next_bot_step)
+        session['bot_steps'] = bot_existing_steps
+    else:
+        next_bot_step = None
+    for j in wins_combo:
+        if j in get_all_combos(bot_existing_steps):
+            bot_name = 'Bot'
+            emit('bot wins response', {'data': message['data'], 'win': bot_name, 'username': name}, broadcast=broadcasting)
+            test_disconnect('Game Over')
+            break
+    emit('bot cell response', {'data': message['data'], 'name': name, 'bot_step': next_bot_step}, broadcast=broadcasting)
+
+
+
 #connect function
 @socketio.on('connect', namespace='/test')
 def test_connect():
@@ -98,6 +153,21 @@ def test_connect():
 
 # disconnect function
 @socketio.on('disconnect', namespace='/test')
+def test_disconnect():
+    print('Client disconnected!')
+
+
+
+
+#connect function
+@socketio.on('bot connect', namespace='/test')
+def test_connect():
+    name = session['username']
+    emit('bot connecting', {'data': 'Connected', 'name': name}, broadcast=broadcasting)
+
+
+# disconnect function
+@socketio.on('bot disconnect', namespace='/test')
 def test_disconnect():
     print('Client disconnected!')
 

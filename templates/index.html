@@ -16,6 +16,7 @@
 
             socket.on('wins response', function(msg) {
                 $('#connecting').append('<p>'+ msg.win+' Wins!</p>');
+                $('.cell').attr("data-status", "false");
                 alert(msg.win+' Wins!');
             });
 
@@ -58,16 +59,38 @@
     </script>
 </head>
 <body>
-    <form id="join" method="POST" action='#'>
-        <input class="form-control" type="text" name="join_room" id="join_room" placeholder="Room Name">
-        <input class="btn btn-success" type="submit" value="Join Room">
-    </form><br/>
-    <form id="leave" method="POST" action='#'>
-        <input class="form-control" type="text" name="leave_room" id="leave_room" placeholder="Room Name">
-        <input class="btn btn-danger" type="submit" value="Leave Room">
-    </form>
 
-    <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="header-btn">
+                <a class="navbar-brand" href="/">Log Out</a>
+            </li>
+            <li class="header-btn">
+                <a class="navbar-brand" href="/game">New Game</a>
+            </li>
+            <li class="header-btn">
+                <form id="join" method="POST" action='#'>
+                    <input class="form-control" type="text" name="join_room" id="join_room" placeholder="Room Name">
+                    <input class="btn btn-success" type="submit" value="Join Room">
+                </form>
+            </li>
+            <li class="header-btn">
+                <form id="leave" method="POST" action='#'>
+                    <input class="form-control" type="text" name="leave_room" id="leave_room" placeholder="Room Name">
+                    <input class="btn btn-danger" type="submit" value="Leave Room">
+                </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+    <div class="game-container">
         <div class="game">
             <table class="game-table">
                 <thead class="table-header">

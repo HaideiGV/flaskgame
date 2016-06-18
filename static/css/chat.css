@@ -56,7 +56,7 @@ body {
 
 .chat{
     float: left;
-    margin-top: 2em;
+    margin-top: 4em;
     padding-left: 2em;
     width: 50em;
 }
@@ -77,9 +77,10 @@ body {
     background-color: lightgray;
 }
 
-.container{
+.game-container{
     float: left;
     width: 45%;
+    margin-top: 3em;
 }
 
 .login{
@@ -91,11 +92,13 @@ body {
 #join{
   max-width: 350px;
   margin-left: 3em;
+  padding-top: 0.5em;
 }
 
 #leave{
   max-width: 350px;
   margin-left: 3em;
+  padding-top: 0.5em;
 }
 
 .btn{
@@ -114,7 +117,13 @@ body {
 }
 
 #connecting{
+    margin-top: 4em;
     width: 45em;
     float: left;
     background-color: green;
+}
+
+.header-btn{
+  float: left;
+  max-width: 350px;
 }
