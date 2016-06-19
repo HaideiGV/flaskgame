@@ -4,6 +4,7 @@ from gevent import monkey
 from extension import get_all_combos
 import random
 from flask_oauth import OAuth
+from flask_cors import cross_origin
 monkey.patch_all()
 
 
@@ -37,8 +38,6 @@ wins_combo = [
 ]
 
 
-
-
 # #___________________________________________________
 # @app.route('/')
 # def login():
@@ -68,10 +67,6 @@ wins_combo = [
 # #___________________________________________________
 
 
-
-
-
-
 # show game board
 @app.route('/game')
 def index():
@@ -83,6 +78,7 @@ def index_comp():
 
 # login func
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin()
 def login():
     error = None
     if request.method == 'POST':
@@ -169,6 +165,7 @@ def test_message(message):
 
 #game with bot
 @socketio.on('bot cell event', namespace='/test')
+@cross_origin()
 def test_message(message):
     name = session['username']
     cell_id = int(message['data'])
@@ -229,4 +226,5 @@ def test_disconnect():
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='localhost', port=50001)
+    # socketio.run(app, debug=True, host='localhost', port=50001)
+    socketio.run(app)
