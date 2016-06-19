@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.15463917">
-              <caret line="74" column="121" selection-start-line="74" selection-start-column="121" selection-end-line="74" selection-end-column="121" />
+              <caret line="74" column="98" selection-start-line="74" selection-start-column="98" selection-end-line="74" selection-end-column="98" />
               <folding>
                 <element signature="e#0#87#0" expanded="true" />
               </folding>
@@ -537,7 +537,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466375629828</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add allow POST method">
+      <created>1466375842840</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1466375842840</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -592,7 +598,8 @@
     <MESSAGE value="add new page" />
     <MESSAGE value="domains" />
     <MESSAGE value="add flask cors" />
-    <option name="LAST_COMMIT_MESSAGE" value="add flask cors" />
+    <MESSAGE value="add allow POST method" />
+    <option name="LAST_COMMIT_MESSAGE" value="add allow POST method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -828,7 +835,7 @@
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15463917">
-          <caret line="74" column="121" selection-start-line="74" selection-start-column="121" selection-end-line="74" selection-end-column="121" />
+          <caret line="74" column="98" selection-start-line="74" selection-start-column="98" selection-end-line="74" selection-end-column="98" />
           <folding>
             <element signature="e#0#87#0" expanded="true" />
           </folding>
