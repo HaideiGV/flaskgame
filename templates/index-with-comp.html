@@ -8,7 +8,7 @@
     <script type="text/javascript" src="./static/js/socket.io.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		var socket = io.connect('ws://'+document.domain+':'+location.port+'/test');
+    		var socket = io.connect('http://'+document.domain+':'+location.port+'/test');
 
             socket.on('bot connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
@@ -18,7 +18,6 @@
             socket.on('bot cell response', function(msg) {
                 $('#'+msg.data).append(msg.name);
                 $('#'+msg.data).attr("data-status", "false");
-                setTimeout(1000);
                 $('#'+msg.bot_step).append('Bot');
                 $('#'+msg.bot_step).attr("data-status", "false");
             });

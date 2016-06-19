@@ -8,7 +8,7 @@
     <script type="text/javascript" src="./static/js/socket.io.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		var socket = io.connect('ws://'+document.domain+':'+location.port+'/test');
+    		var socket = io.connect('http://'+document.domain+':'+location.port+'/test');
 
             socket.on('my connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
