@@ -71,12 +71,12 @@ wins_combo = [
 
 
 # show game board
-@app.route('/game')
+@app.route('/game', methods=['GET', 'POST'])
 @headers({'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Credentials": "true", 'Allow':'GET,HEAD,OPTION,POST'})
 def index():
     return render_template('index.html')
 
-@app.route('/game-with-comp')
+@app.route('/game-with-comp', methods=['GET', 'POST'])
 @headers({'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Credentials": "true", 'Allow':'GET,HEAD,OPTION,POST'})
 def index_comp():
     # return Response('index-with-comp.html.html', headers=['Access-Control-Allow-Origin: *'])
