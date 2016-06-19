@@ -1,10 +1,12 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
-from extension import get_all_combos
+from extension import get_all_combos, crossdomain
 import random
 from flask_oauth import OAuth
 from flask_cors import cross_origin
+from flask.ext.cors import CORS
+
 monkey.patch_all()
 
 
@@ -78,6 +80,7 @@ def index_comp():
 
 # login func
 @app.route('/', methods=['GET', 'POST'])
+@crossdomain(origin='*')
 def login():
     error = None
     if request.method == 'POST':
@@ -224,5 +227,5 @@ def test_disconnect():
 
 
 if __name__ == '__main__':
-    # socketio.run(app, debug=True, host='localhost', port=50001)
-    socketio.run(app)
+    socketio.run(app, debug=True, host='localhost', port=50001)
+    # socketio.run(app)
