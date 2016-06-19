@@ -78,7 +78,6 @@ def index_comp():
 
 # login func
 @app.route('/', methods=['GET', 'POST'])
-@cross_origin()
 def login():
     error = None
     if request.method == 'POST':
