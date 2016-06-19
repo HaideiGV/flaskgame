@@ -1,11 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, Response
 from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room, disconnect, send, rooms
 from gevent import monkey
-from extension import get_all_combos, crossdomain
+from extension import get_all_combos
 import random
 from flask_oauth import OAuth
 from flask_cors import cross_origin
 from flask.ext.cors import CORS
+from flask_headers import headers
 
 monkey.patch_all()
 
@@ -75,19 +76,18 @@ def index():
     return render_template('index.html')
 
 @app.route('/game-with-comp')
+@headers({'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Credentials": "true"})
 def index_comp():
+    # return Response('index-with-comp.html.html', headers=['Access-Control-Allow-Origin: *'])
     return render_template('index-with-comp.html')
 
 # login func
 @app.route('/', methods=['GET', 'POST'])
-@crossdomain(origin='*')
 def login():
     error = None
     if request.method == 'POST':
         human_trigger = request.form.get('human')
-        print(human_trigger)
         bot_trigger = request.form.get('bot')
-        print(bot_trigger)
         if request.form['username'] not in ['admin1', 'admin2'] or request.form['password'] not in ['admin1', 'admin2']:
             error = 'Invalid Credentials. Please try again.'
         else:
@@ -101,7 +101,7 @@ def login():
                 session['bot_steps'] = []
                 session['steps'] = []
                 return redirect(url_for('index_comp'))
-    return render_template('login.html', error=error)
+    return render_template('login.html')
 
 
 # use the room if the room have less than 1 users
