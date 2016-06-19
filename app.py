@@ -165,7 +165,6 @@ def test_message(message):
 
 #game with bot
 @socketio.on('bot cell event', namespace='/test')
-@cross_origin()
 def test_message(message):
     name = session['username']
     cell_id = int(message['data'])
