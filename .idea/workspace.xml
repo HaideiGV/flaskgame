@@ -47,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.030927835">
-              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -614,7 +614,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466384241716</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="change Procfile to app.py">
+      <created>1466386362743</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1466386362743</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -672,7 +678,8 @@
     <MESSAGE value="add allow POST method" />
     <MESSAGE value="change http to ws" />
     <MESSAGE value="change Procfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="change Procfile" />
+    <MESSAGE value="change Procfile to app.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="change Procfile to app.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -927,7 +934,7 @@
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.030927835">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
           <folding />
         </state>
       </provider>

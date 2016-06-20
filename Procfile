@@ -1,2 +1,2 @@
 web: pip install --upgrade pip
-web: python app.py
+web: gunicorn -w 4 -b app:app
