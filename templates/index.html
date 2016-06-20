@@ -10,6 +10,7 @@
     	$(document).ready(function(){
     		var socket = io.connect('ws://'+document.domain+':'+location.port+'/test');
 
+
             socket.on('my connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
     		});
