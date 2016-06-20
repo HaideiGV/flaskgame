@@ -45,7 +45,7 @@
                     $('#'+cell_id).attr("data-status", "false");
         		    socket.emit('bot cell event', {data: cell_id});
         		}else{
-        		    alert('Field is blocked!');
+        		    alert('Field is already clicked!');
         		}
         		return false;
     		});

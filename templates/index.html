@@ -37,6 +37,7 @@
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
     		    if ($(this).attr('data-status') === "true"){
+                    $('#'+cell_id).attr("data-status", "false");
         		    socket.emit('cell event', {data: cell_id});
         		}else{
         		    alert('Field is blocked!');
@@ -46,6 +47,7 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
+                $('#'+cell_id).attr("data-status", "false");
         		socket.emit('my event', {data: cell_id});
         		return false;
     		});
