@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3d481a22-9a20-43c0-9a9f-2bc0a393aad9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index-with-comp.html" afterPath="$PROJECT_DIR$/templates/index-with-comp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="flaskgame.iws" />
@@ -49,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.030927835">
-              <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -598,7 +596,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466381276315</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="change Procfile">
+      <created>1466384083650</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1466384083650</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -655,7 +659,8 @@
     <MESSAGE value="add flask cors" />
     <MESSAGE value="add allow POST method" />
     <MESSAGE value="change http to ws" />
-    <option name="LAST_COMMIT_MESSAGE" value="change http to ws" />
+    <MESSAGE value="change Procfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="change Procfile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -910,7 +915,7 @@
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.030927835">
-          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
           <folding />
         </state>
       </provider>

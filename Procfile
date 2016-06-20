@@ -1,2 +1,2 @@
 web: pip install --upgrade pip
-web: gunicorn -k gevent -w 1 module:app
+web: gunicorn -k gevent -w 1 app:app
