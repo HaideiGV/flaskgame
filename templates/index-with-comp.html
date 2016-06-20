@@ -9,6 +9,7 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		var socket = io.connect('http://'+document.domain+':'+location.port+'/test');
+            var wait_bot = false;
 
             socket.on('bot connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
@@ -19,6 +20,7 @@
                 $('#'+msg.data).append(msg.name);
                 $('#'+msg.data).attr("data-status", "false");
                 $('#'+msg.bot_step).append('Bot');
+                $('#game-board').attr("data-status", "false");
                 $('#'+msg.bot_step).attr("data-status", "false");
             });
 
@@ -41,12 +43,18 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-    		    if ($(this).attr('data-status') === "true"){
-                    $('#'+cell_id).attr("data-status", "false");
-        		    socket.emit('bot cell event', {data: cell_id});
-        		}else{
-        		    alert('Field is already clicked!');
-        		}
+                var bot_request = $("#game-board").attr('data-bot');
+                if (bot_request === "true"){
+    		        if ($(this).attr('data-status') === "true"){
+                        $('#'+cell_id).attr("data-status", "false");
+                        $('#game-board').attr("data-status", "false");
+        		        socket.emit('bot cell event', {data: cell_id});
+        		    }else{
+        		        alert('Field is already clicked!');
+        		    }
+                }else{
+                    alert('Wait for bot request!');
+                }
         		return false;
     		});
 
@@ -86,7 +94,7 @@
                         <td colspan="3">Game Board</td>
                     </tr>
                 </thead>
-                <tbody id="game-board" class="table-body" >
+                <tbody id="game-board" class="table-body" data-bot="true">
                     <tr>
                         <td id='1' class="cell" data-status="true"></td>
                         <td id='2' class="cell" data-status="true"></td>
