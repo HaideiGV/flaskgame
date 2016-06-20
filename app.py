@@ -31,7 +31,7 @@ facebook = oauth.remote_app('facebook',
 )
 
 
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='gevent')
 broadcasting = False
 
 wins_combo = [
