@@ -33,6 +33,10 @@
         		$('#log').append('<p>Received: from '+ msg.name + ' to -> '+ msg.data + '</p>');
     		});
 
+            socket.on('server test response', function(msg) {
+//        		$('#log').append('<p>Received: from '+ msg.name + ' to -> '+ msg.data + '</p>');
+    		});
+
 
 
     		$('.cell').click(function(event) {

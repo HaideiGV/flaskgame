@@ -45,9 +45,7 @@ def background_thread():
     while True:
         time.sleep(10)
         count += 1
-        socketio.emit('my response',
-                      {'data': 'Server generated event', 'count': count},
-                      namespace='/test')
+        socketio.emit('server test response', {'data': 'Server generated event', 'count': count}, namespace='/test')
 
 
 
