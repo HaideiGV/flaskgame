@@ -20,7 +20,7 @@
                 $('#'+msg.data).append(msg.name);
                 $('#'+msg.data).attr("data-status", "false");
                 $('#'+msg.bot_step).append('Bot');
-                $('#game-board').attr("data-status", "false");
+                $('#game-board').attr("data-bot", "true");
                 $('#'+msg.bot_step).attr("data-status", "false");
             });
 
@@ -43,11 +43,11 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-                var bot_request = $("#game-board").attr('data-bot');
-                if (bot_request === "true"){
+                var bot_request = $("#game-board");
+                if (bot_request.attr('data-bot') === "true"){
     		        if ($(this).attr('data-status') === "true"){
                         $('#'+cell_id).attr("data-status", "false");
-                        $('#game-board').attr("data-status", "false");
+                        bot_request.attr("data-bot", "false");
         		        socket.emit('bot cell event', {data: cell_id});
         		    }else{
         		        alert('Field is already clicked!');
@@ -60,7 +60,6 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-                $('#'+cell_id).attr("data-status", "false");
         		socket.emit('bot event', {data: cell_id});
         		return false;
     		});

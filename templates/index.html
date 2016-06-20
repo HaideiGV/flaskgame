@@ -46,7 +46,6 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-                $('#'+cell_id).attr("data-status", "false");
         		socket.emit('my event', {data: cell_id});
         		return false;
     		});

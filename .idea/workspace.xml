@@ -68,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="43" />
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="e#0#87#0" expanded="true" />
               </folding>
@@ -80,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+              <caret line="1" column="44" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -89,8 +89,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+            <state vertical-scroll-proportion="-15.333333">
+              <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -99,8 +99,8 @@
       <file leaf-file-name="index-with-comp.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/index-with-comp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51891893">
-              <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.7135135">
+              <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/index-with-comp.html" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
       </list>
     </option>
   </component>
@@ -742,7 +742,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466445074640</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="client events">
+      <created>1466446435181</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1466446435181</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -803,7 +809,8 @@
     <MESSAGE value="change Procfile" />
     <MESSAGE value="change Procfile to app.py" />
     <MESSAGE value="add threads" />
-    <option name="LAST_COMMIT_MESSAGE" value="add threads" />
+    <MESSAGE value="client events" />
+    <option name="LAST_COMMIT_MESSAGE" value="client events" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1114,15 +1121,7 @@
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1130,17 +1129,25 @@
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="43" />
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
             <element signature="e#0#87#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.333333">
+          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index-with-comp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51891893">
-          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.7135135">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
           <folding />
         </state>
       </provider>
