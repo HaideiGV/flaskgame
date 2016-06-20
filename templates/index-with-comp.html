@@ -9,7 +9,6 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		var socket = io.connect('http://'+document.domain+':'+location.port+'/test');
-            var wait_bot = false;
 
             socket.on('bot connecting', function(msg) {
         		$('#connecting').append('<p>'+ msg.name+' ' + msg.data+'</p>');
