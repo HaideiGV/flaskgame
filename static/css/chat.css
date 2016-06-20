@@ -130,7 +130,8 @@ body {
 }
 
 #wins{
-    font-size: 15px;
+    font-size: 20px;
     color: #c9302c;
+    background-color: darkblue;
     text-align: center;
 }
