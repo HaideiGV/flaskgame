@@ -27,7 +27,7 @@
 
             socket.on('bot wins response', function(msg) {
                 $('.cell').attr("data-status", "false");
-                $('#log').append('<p>'+ msg.win+' Wins!</p>');
+                $('#log').append('<p id="wins">'+ msg.win+' Wins!</p>');
                 alert(msg.win+' Wins!');
             });
 

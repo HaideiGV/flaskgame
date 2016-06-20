@@ -16,7 +16,7 @@
     		});
 
             socket.on('wins response', function(msg) {
-                $('#log').append('<p>'+ msg.win+' Wins!</p>');
+                $('#log').append('<p id="wins">'+ msg.win+' Wins!</p>');
                 $('.cell').attr("data-status", "false");
                 alert(msg.win+' Wins!');
             });

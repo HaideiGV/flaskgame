@@ -128,3 +128,9 @@ body {
   float: left;
   max-width: 350px;
 }
+
+#wins{
+    font-size: 15px;
+    color: #c9302c;
+    text-align: center;
+}
