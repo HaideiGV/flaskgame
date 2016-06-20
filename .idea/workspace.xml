@@ -98,8 +98,8 @@
       <file leaf-file-name="index-with-comp.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/index-with-comp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7135135">
-              <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.35675675">
+              <caret line="44" column="65" selection-start-line="44" selection-start-column="65" selection-end-line="44" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -717,7 +717,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466443648421</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="add threads">
+      <created>1466444364400</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1466444364400</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1114,8 +1120,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index-with-comp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7135135">
-          <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.35675675">
+          <caret line="44" column="65" selection-start-line="44" selection-start-column="65" selection-end-line="44" selection-end-column="65" />
           <folding />
         </state>
       </provider>
