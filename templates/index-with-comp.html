@@ -42,7 +42,7 @@
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
     		    if ($(this).attr('data-status') === "true"){
-                    $('#'+msg.data).attr("data-status", "false");
+                    $('#'+cell_id).attr("data-status", "false");
         		    socket.emit('bot cell event', {data: cell_id});
         		}else{
         		    alert('Field is blocked!');
@@ -52,7 +52,7 @@
 
     		$('.cell').click(function(event) {
     		    var cell_id = $(this).attr('id');
-                $('#'+msg.data).attr("data-status", "false");
+                $('#'+cell_id).attr("data-status", "false");
         		socket.emit('bot event', {data: cell_id});
         		return false;
     		});
