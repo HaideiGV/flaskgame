@@ -3,10 +3,12 @@ from flask.ext.socketio import SocketIO, emit, join_room, leave_room, close_room
 from gevent import monkey
 from extension import get_all_combos
 import random
+import time
 from flask_oauth import OAuth
 from flask_cors import cross_origin
 from flask.ext.cors import CORS
 from flask_headers import headers
+from threading import Thread
 
 monkey.patch_all()
 
@@ -33,6 +35,21 @@ facebook = oauth.remote_app('facebook',
 
 socketio = SocketIO(app, async_mode='gevent')
 broadcasting = False
+thread = None
+
+
+
+def background_thread():
+    """Example of how to send server generated events to clients."""
+    count = 0
+    while True:
+        time.sleep(10)
+        count += 1
+        socketio.emit('my response',
+                      {'data': 'Server generated event', 'count': count},
+                      namespace='/test')
+
+
 
 wins_combo = [
 	[1,2,3],[4,5,6],[7,8,9],
@@ -74,11 +91,21 @@ wins_combo = [
 @app.route('/game', methods=['GET', 'POST'])
 @headers({'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Credentials": "true", 'Allow': 'GET,HEAD,OPTION,POST'})
 def index():
+    global thread
+    if thread is None:
+        thread = Thread(target=background_thread)
+        thread.daemon = True
+        thread.start()
     return render_template('index.html')
 
 @app.route('/game-with-comp', methods=['GET', 'POST'])
 @headers({'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Credentials": "true", 'Allow': 'GET,HEAD,OPTION,POST'})
 def index_comp():
+    global thread
+    if thread is None:
+        thread = Thread(target=background_thread)
+        thread.daemon = True
+        thread.start()
     # return Response('index-with-comp.html.html', headers=['Access-Control-Allow-Origin: *'])
     return render_template('index-with-comp.html')
 
