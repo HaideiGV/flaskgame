@@ -103,7 +103,7 @@ def login():
                 return redirect(url_for('index'))
             elif bot_trigger:
                 session['username'] = request.form['username']
-                session['all_choices'] = range(1, 10)
+                session['all_choices'] = [v for v in range(1, 10)]
                 session['bot_steps'] = []
                 session['steps'] = []
                 return redirect(url_for('index_comp'))
